@@ -1,0 +1,45 @@
+- model_class = Task
+div class="page-header"
+  h1=t '.title', :default => model_class.model_name.human.pluralize.titleize
+
+div ng-controller='TodosCtrl'
+  table.table
+    thead
+      tr
+        th= model_class.human_attribute_name(:title)
+        th= model_class.human_attribute_name(:task_at)
+        th= model_class.human_attribute_name(:is_complete)
+        th= model_class.human_attribute_name(:created_at)
+        th=t '.actions', :default => t("helpers.actions")
+    tbody
+      tr ng-repeat="task in tasks"
+        td= "{{ task.title }}"
+        td= "{{ task.task_at | date:'dd.MM.yyyy HH:mm' }}"
+        td= "{{ task.is_complete }}"
+        td= "{{ task.created_at | date:'dd.MM.dd.yyyy HH:mm' }}"
+        td
+          button.close type="button" ng-click="delete($index)" &times;
+
+  hr
+  = form_for Task.new, url: '', class: 'form-horizontal', html: { 'ng-submit' => "addTask()" } do |f|
+    .form-group
+      = f.label :title, :class => 'control-label'
+      .controls
+        = f.text_field :title, class: 'form-control', 'ng-model' => "newTask.title"
+    .form-group
+      = f.label :task_at, class: 'control-label'
+      .controls
+        = f.text_field :task_at, class: 'form-control datetimepicker', 'ng-model' => "newTask.task_at"
+
+    .form-group
+      .checkbox
+        = f.label :is_complete do
+          = f.check_box :is_complete, 'ng-model' => "newTask.is_complete"
+          = model_class.human_attribute_name(:is_complete)
+
+
+    input type='submit' value=t("helpers.links.new")
+
+
+  / | {{ newTask.title }}
+

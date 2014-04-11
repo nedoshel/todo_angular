@@ -1,0 +1,34 @@
+ru:
+  helpers:
+    actions: "Действия"
+    links:
+      back: "Назад"
+      cancel: "Отмена"
+      confirm: "Вы уверенны?"
+      destroy: "Удалить"
+      new: "Создать"
+      edit: "Редактировать"
+    titles:
+      edit: "Редактировать %{model}"
+      save: "Сохранить %{model}"
+      new: "Создать %{model}"
+      delete: "Удалить %{model}"
+  activerecord:
+    attributes:
+      task:
+        title: Название
+        task_at: Время задачи
+        is_complete: Выполнение
+        created_at: Дата создания
+    errors:
+      blank:
+      models:
+        task:
+          attributes:
+            task_at:
+              blank:  не может быть пустым
+              exists: уже существует
+            title:
+              blank:  не может быть пустым
+              exists: уже существует
+

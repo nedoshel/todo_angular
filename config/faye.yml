@@ -1,0 +1,28 @@
+# Faye
+development:
+  server: "http://localhost:9292/faye"
+  adapter_javascript_url: "http://localhost:9292/faye/faye.js"
+  auth_token: "01f59a512873bfbf88b1e629405b792fa4f2fdf4e6252cb228d2abe79cd0da9e"
+  adapter: "Faye"
+  async: true
+
+test:
+  server: "http://localhost:9292/faye"
+  adapter_javascript_url: "http://localhost:9292/faye/faye.js"
+  adapter: "Faye"
+  auth_token: "01f59a512873bfbf88b1e629405b792fa4f2fdf4e6252cb228d2abe79cd0da9e"
+  async: false
+
+# production:
+#   server: "http://todo.muravkin.tk/faye"
+#   adapter_javascript_url: "http://todo.muravkin.tk:9292/faye/faye.js"
+#   adapter: "Faye"
+#   auth_token: "01f59a512873bfbf88b1e629405b792fa4f2fdf4e6252cb228d2abe79cd0da9e"
+#   async: true
+
+production:
+  server: "http://162.243.21.109/faye"
+  adapter_javascript_url: "http://162.243.21.109:9292/faye/faye.js"
+  adapter: "Faye"
+  auth_token: "01f59a512873bfbf88b1e629405b792fa4f2fdf4e6252cb228d2abe79cd0da9e"
+  async: true
