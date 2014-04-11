@@ -25,6 +25,12 @@ gem 'jbuilder', '~> 1.2'
 gem "faye"
 
 gem 'thin'
+
 group :doc do
   gem 'sdoc', require: false
+end
+
+group :development do
+  gem 'capistrano', '2.15.5'
+  gem 'rvm-capistrano'
 end

@@ -4,7 +4,7 @@ require "yaml"
 require 'faye'
 
 Faye::WebSocket.load_adapter('thin')
-Faye.logger =  Logger.new(STDOUT)
+#Faye.logger =  Logger.new(STDOUT)
 
 app = Faye::RackAdapter.new(:mount => '/faye', :timeout => 25)
 
