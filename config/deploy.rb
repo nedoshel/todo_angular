@@ -47,13 +47,13 @@ set :keep_releases, 2
 set :bundle_cmd, "/home/#{user}/.rvm/gems/#{rvm_ruby_string}@global/bin/bundle"
 
 
-set :faye_pid, "#{deploy_to}/shared/pids/faye.pid"
+set :faye_pid, "#{deploy_to}/shared/pids/faye_angular.pid"
 
 
 
 before 'deploy:migrate', 'deploy:symlink_shared'
 before 'deploy:assets:precompile', 'deploy:migrate'
-#before 'deploy:restart', 'run_rsync:restart'
+before 'deploy:restart', 'faye:restart'
 
 after 'deploy:symlink_shared', 'deploy:create_db'
 after 'deploy', 'deploy:cleanup'
@@ -98,10 +98,10 @@ namespace :deploy do
 
 end
 
-namespace :run_rsync do
-  desc "Start sync.ru server"
+namespace :faye do
+  desc "Start faye.ru server"
   task :start do
-    run "cd #{release_path} && bundle exec rackup faye.ru -E production -s thin --pid #{faye_pid} -D"
+    run "cd #{release_path} && bundle exec rackup faye.ru -E production -p 9293 -s thin --pid #{faye_pid} -D"
 
   end
 
