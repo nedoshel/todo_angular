@@ -107,8 +107,8 @@ namespace :faye do
 
   desc "Stop faye.ru server"
   task :stop do
-    #run "cd #{deploy_to}/current;if [ -f #{faye_pid} ] && [ -e /proc/$(cat #{faye_pid}) ]; then kill -9 `cat #{faye_pid}`; fi"
-    run "kill -INT `cat #{faye_pid}`"
+    run "cd #{deploy_to}/current;if [ -f #{faye_pid} ] && [ -e /proc/$(cat #{faye_pid}) ]; then kill -INT `cat #{faye_pid}`; fi"
+    #run "kill -INT `cat #{faye_pid}`"
   end
 
   desc "Restart faye.ru server"
