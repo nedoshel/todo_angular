@@ -60,7 +60,7 @@ app.factory 'Faye', ['$faye', ($faye) ->
         $scope.newTask = {}
       ), (response) ->
         errors = response.data
-        window.showFlashMessage(errors, options: { type: 'errors' }) if error
+        window.showFlashMessage(errors, { type: 'danger' }) if errors
 
 
   $scope.delete = ($index) ->
