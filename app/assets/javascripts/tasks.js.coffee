@@ -48,14 +48,16 @@ app.factory 'Faye', ['$faye', ($faye) ->
     # console.log "faye", msg
 
     if msg.action == 'create'
-      $scope.tasks.push msg.task
+      $scope.tasks.push new Task(msg.task)
+      console.log "$scope.tasks", $scope.tasks
 
     if msg.action == 'destroy'
       $scope.tasks.splice(msg.index, 1)
 
   $scope.addTask = ->
-    task = new Task($scope.newTask)
-    task.$save ((data, headers) ->
+    # task = new Task($scope.newTask)
+    # task.$save ((data, headers) ->
+    task = Task.save $scope.newTask, ((data, headers) ->
         Faye.publish("/tasks", { action: 'create', task: task } )
         $scope.newTask = {}
       ), (response) ->

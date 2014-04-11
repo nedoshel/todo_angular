@@ -101,13 +101,13 @@ end
 namespace :faye do
   desc "Start faye.ru server"
   task :start do
-    run "cd #{release_path} && bundle exec rackup faye.ru -E production -p 9293 -s thin --pid #{faye_pid} -D"
+    run "cd #{deploy_to}/current && bundle exec rackup faye.ru -E production -p 9293 -s thin --pid #{faye_pid} -D"
 
   end
 
   desc "Stop faye.ru server"
   task :stop do
-    run "cd #{release_path};if [ -f #{faye_pid} ] && [ -e /proc/$(cat #{faye_pid}) ]; then kill -9 `cat #{faye_pid}`; fi"
+    run "cd #{deploy_to}/current;if [ -f #{faye_pid} ] && [ -e /proc/$(cat #{faye_pid}) ]; then kill -9 `cat #{faye_pid}`; fi"
   end
 
   desc "Restart faye.ru server"
