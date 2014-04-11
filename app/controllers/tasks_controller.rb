@@ -7,16 +7,18 @@ class TasksController < ApplicationController
     @tasks = Task.all
   end
 
+
   # POST /tasks
   # POST /tasks.json
   def create
     @task = Task.new(task_params)
-
     respond_to do |format|
       if @task.save
-        format.json { render action: 'show', status: :created, location: @task }
+        format.json { render json: @task.to_json }
       else
-        format.json { render json: @task.errors.full_messages, status: :unprocessable_entity }
+        puts "___________________"
+        puts @task.errors.full_messages
+        format.json { render json: @task.errors.full_messages }
       end
     end
   end

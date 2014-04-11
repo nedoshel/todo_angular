@@ -34,8 +34,7 @@ div ng-controller='TodosCtrl'
     .form-group
       .checkbox
         = f.label :is_complete do
-          = f.check_box :is_complete, 'ng-model' => "newTask.is_complete"
-          = model_class.human_attribute_name(:is_complete)
+          input#task_is_complete name="task[is_complete]" ng-model="newTask.is_complete" type="checkbox" value="1" ng-true-value="1" ng-false-value="0" = model_class.human_attribute_name(:is_complete)
 
 
     input type='submit' value=t("helpers.links.new")

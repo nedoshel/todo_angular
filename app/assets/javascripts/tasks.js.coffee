@@ -49,7 +49,6 @@ app.factory 'Faye', ['$faye', ($faye) ->
 
     if msg.action == 'create'
       $scope.tasks.push new Task(msg.task)
-      console.log "$scope.tasks", $scope.tasks
 
     if msg.action == 'destroy'
       $scope.tasks.splice(msg.index, 1)
