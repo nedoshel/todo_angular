@@ -6,7 +6,12 @@ require 'faye'
 Faye::WebSocket.load_adapter('thin')
 #Faye.logger =  Logger.new(STDOUT)
 
-app = Faye::RackAdapter.new(:mount => '/faye', :timeout => 25)
+app = Faye::RackAdapter.new(:mount => '/faye',
+ :timeout => 25,
+ :engine  => {
+    :port  => 6379
+  }
+)
 
 #app.load_config(
 #  File.expand_path("../config/faye.yml", __FILE__),

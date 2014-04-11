@@ -1,4 +1,4 @@
-FayeServerURL = "http://162.243.21.109/faye"
+FayeServerURL = "http://162.243.21.109:9293/faye"
 
 # =============== faye init ===================
 angular.module "faye", []
