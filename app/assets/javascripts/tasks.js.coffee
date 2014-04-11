@@ -42,9 +42,6 @@ app.factory 'Faye', ['$faye', ($faye) ->
 
 @TodosCtrl = [ "$scope", "Task", "$http", "Faye", ($scope, Task, $http, Faye) ->
 
-  # Get just once (using $q - promise)
-  # $scope.data = Faye.get("/channel-3")
-
   $scope.tasks = Task.query()
 
   Faye.subscribe "/tasks", (msg) ->
@@ -58,15 +55,12 @@ app.factory 'Faye', ['$faye', ($faye) ->
 
   $scope.addTask = ->
     task = new Task($scope.newTask)
-
     task.$save ((data, headers) ->
-        # success
         Faye.publish("/tasks", { action: 'create', task: task } )
         $scope.newTask = {}
       ), (response) ->
         errors = response.data
-        console.log errors
-        window.showFlashMessage(errors, options: { type: 'errors' })
+        window.showFlashMessage(errors, options: { type: 'errors' }) if error
 
 
   $scope.delete = ($index) ->
