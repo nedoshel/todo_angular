@@ -9,6 +9,6 @@ max_conns: 1024
 max_persistent_conns: 100
 require: []
 threadpool_size: 20
-servers: 2
+servers: 1
 daemonize: true
 socket: "/tmp/todo_angular.socket"

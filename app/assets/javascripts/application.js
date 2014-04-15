@@ -17,9 +17,13 @@
 // require turbolinks
 //= require angular
 //= require angular-resource
+//= require xeditable
+//= require bootstrap
 //= require jquery-ui-timepicker-addon
 //= require_tree ./application/
-//= require_tree .
+
+//= require tasks
+
 $.datepicker.regional['ru'] = {
   closeText: 'Закрыть',
   prevText: '<Пред',
