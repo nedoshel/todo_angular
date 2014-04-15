@@ -16,6 +16,7 @@ ru:
   activerecord:
     attributes:
       task:
+        id:    Номер
         title: Название
         task_at: Время задачи
         is_complete: Выполнение

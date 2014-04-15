@@ -16,9 +16,7 @@ class TasksController < ApplicationController
       if @task.save
         format.json { render json: @task.to_json }
       else
-        puts "___________________"
-        puts @task.errors.full_messages
-        format.json { render json: @task.errors.full_messages }
+        format.json { render json: { errors: @task.errors.full_messages } }
       end
     end
   end
@@ -30,7 +28,7 @@ class TasksController < ApplicationController
       if @task.update(task_params)
         format.json { head :no_content }
       else
-        format.json { render json: @task.errors, status: :unprocessable_entity }
+        format.json { render json: { errors: @task.errors.full_messages } }
       end
     end
   end

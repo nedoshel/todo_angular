@@ -6,19 +6,38 @@ div ng-controller='TodosCtrl'
   table.table
     thead
       tr
+        th= model_class.human_attribute_name(:id)
         th= model_class.human_attribute_name(:title)
         th= model_class.human_attribute_name(:task_at)
         th= model_class.human_attribute_name(:is_complete)
         th= model_class.human_attribute_name(:created_at)
         th=t '.actions', :default => t("helpers.actions")
     tbody
-      tr ng-repeat="task in tasks"
-        td= "{{ task.title }}"
-        td= "{{ task.task_at | date:'dd.MM.yyyy HH:mm' }}"
-        td= "{{ task.is_complete }}"
-        td= "{{ task.created_at | date:'dd.MM.dd.yyyy HH:mm' }}"
+      tr.task ng-repeat="task in tasks"
+        td= "{{ task.id }}"
+        / td= "{{ task.title }}"
         td
-          button.close type="button" ng-click="delete($index)" &times;
+          span editable-text="task.title" e-name="title" e-form="rowform" e-required='' {{ task.title || 'empty' }}
+
+        td
+          span editable-datetime="task.task_at" e-name="task_at" e-form="rowform" e-class="datetimepicker" e-required='' e-data-id="{{task.id}}" {{ (task.task_at | date: 'dd.MM.yyyy HH:mm') || 'empty' }}
+        td= "{{ task.is_complete }}"
+        td= "{{ task.created_at | date:'dd.MM.yyyy HH:mm' }}"
+        / td
+        /   .ttl.visible
+        /     button.editable type="button"
+        /       i.fa.fa-pencil
+        /     button.close type="button" ng-click="delete($index)" &times;
+        td style=("white-space: nowrap")
+          /! form
+          form.form-buttons.form-inline editable-form="" name="rowform" ng-show="rowform.$visible" onbeforesave="updateTask($data, task.id)" shown=("inserted == task")
+            button.btn.btn-primary ng-disabled="rowform.$waiting" type="submit"
+              | save
+            button.btn.btn-default ng-click="rowform.$cancel()" ng-disabled="rowform.$waiting" type="button"
+              | cancel
+          .buttons ng-show="!rowform.$visible"
+            button.btn.btn-primary ng-click="rowform.$show()"  edit
+            button.btn.btn-danger ng-click="delete($index)"  del
 
   hr
   = form_for Task.new, url: '', class: 'form-horizontal', html: { 'ng-submit' => "addTask()" } do |f|
