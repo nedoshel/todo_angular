@@ -30,10 +30,7 @@ angular.module("faye").factory "$faye", ["$q", "$rootScope", ($q, $rootScope) ->
 ]
 # =============== faye init ===================
 
-app = angular.module('Todo', ['ngResource', 'faye', "xeditable"])
-
-app.run (editableOptions) ->
-  editableOptions.theme = 'bs3'
+app = angular.module('Todo', ['ngResource', 'faye'])
 
 app.factory "Task", ["$resource", ( $resource ) ->
   $resource("/tasks/:id.json", { id: "@id" }, { update: { method: 'PUT' } })
